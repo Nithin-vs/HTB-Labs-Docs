@@ -31,6 +31,6 @@ Successfully gained the shell. using `whoami` found that im as root.
 ## Step 4 - Collecting the Flags
 As final steps, the shell is dumb and with the command `python -c 'import pty; pty.spawn("/bin/bash")'` the shell is TTY.\
 HTB asks for user makis, root flags which can be easily found by searching the directories.\
-Finally Pawned the machine.
+Finally Pwned the machine.
 
 ![Lame Machine Pawned](https://github.com/Nithin-vs/HTB-Labs-Docs/blob/main/Lame/Acheived.png)
