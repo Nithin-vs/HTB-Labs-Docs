@@ -15,7 +15,7 @@ After all i looked about the version of ftp which is used, `VsFTPd 2.3.4` and se
 Luckly there is a vulnerability in the respected version of the FTP known as **VSFTPD v2.3.4 Backdoor Command Execution** and there is open exploit in [rapid7](https://www.rapid7.com/db/modules/exploit/unix/ftp/vsftpd_234_backdoor/).\
 So, executed metasploit exploit using the `exploit/unix/ftp/vsftpd_234_backdoor` payload, Unfortunatly it **FAILED**.
 ## Step 3 - Exploiting the SMB 
-In Nmap scan, SMB was open and without wasting time reviewed the version of it `smbd 3.0.20-Debian` and searched for any vulnerability on the particular version of SMB./
+In Nmap scan, SMB was open and without wasting time reviewed the version of it `smbd 3.0.20-Debian` and searched for any vulnerability on the particular version of SMB.\
 Yes, it is there **Samba "username map script" Command Execution**. 
 > In old versions of Samba, there is a feature that maps fake usernames to real ones using a script.
 But this mapping process is broken, if you give Samba a specially crafted username, it will run system commands instead of just mapping names.
