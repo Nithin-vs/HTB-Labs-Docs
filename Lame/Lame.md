@@ -8,7 +8,7 @@ where:\
 `-sC` - Scan with default NSE scripts. Considered useful for discovery and safe.\
 `-sV` - Attempts to determine the version of the service running on port.
 
-The Output it produced is in the file - [Nmap output file](HTB-Labs-Docs/Lame/Nmap.txt)
+The Output it produced is in the file - [Nmap output file](https://github.com/Nithin-vs/HTB-Labs-Docs/blob/main/Lame/Nmap.txt)
 ## Step 2 - Exploiting the FTP 
 In Nmap scan, FTP was open and it was accessible via the `Anonymous` login, but it doesn't work.
 After all i looked about the version of ftp which is used, `VsFTPd 2.3.4` and searched for vulnerability.\
