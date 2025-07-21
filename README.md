@@ -10,5 +10,5 @@ Cap is an easy difficulty Linux machine running an HTTP server that performs adm
 **[Complete Documentation](Cap/Cap.md)**
 ## Outbound Pwned - 20 July 2025
 **About Outbound**
-Outbound is a Linux machine flagged Easy in the Active Machines and obviously little hard. This Box replicate some of the new Vulns and updated one.
+Outbound is a Linux machine flagged Easy in the Active Machines and obviously little hard. This Box replicate some of the new Vulns and updated one.\
 **[Complete Documentation](https://github.com/Nithin-vs/HTB-Labs-Docs/blob/main/Outbound/Outbound.md)**
